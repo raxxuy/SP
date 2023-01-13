@@ -1,8 +1,7 @@
 #include <stdio.h>
 
-int BrojPozitivni(int array[], int n) {
-    if (n == -1) return 0;
-    return (array[n-1] > 0 ? 1 : 0) + BrojPozitivni(array, n-1);
+int BrojPozitivni (int array[], int n) {
+    return n == 0 ? 0 : (array[n-1] > 0 ? 1 : 0) + BrojPozitivni(array, n-1);
 }
 
 int main() {

@@ -3,7 +3,7 @@
 #include <string.h>
 
 void wtf() {
-    FILE *f = fopen("dat.txt", "w");
+    FILE *f = fopen("input.txt", "w");
     char c;
     while((c = getchar()) != EOF) {
         fputc(c, f);
@@ -14,42 +14,38 @@ void wtf() {
 int main() {
     wtf();
 
-    FILE *f;
+    FILE *f = fopen("input.txt", "r");
 
-    char row[100], a[100];
-    int prv, posleden, max = 0, count;
-
-    if (!(f = fopen("dat.txt", "r"))) return -1;
+    char line[100];
+    int count, digits[100];
 
     while (!feof(f)) {
 
-        fgets(row, 100, f);
+        fscanf(f, "%s", line);
 
         if (feof(f)) break;
 
         count = 0;
 
-        for (int i = 0; i < strlen(row); i++) {
-            if (row[i] >= '0' && row[i] <= '9') {
-                prv = i;
-                break;
+        for (int i = 0; i < strlen(line); i++) {
+            if (isdigit(line[i])) {
+                digits[count] = line[i] - '0';
+                count++;
             }
         }
 
-        for (int i = (int) strlen(row)-1; i >= 0; i++) {
-            if (row[i] >= '0' && row[i] <= '9') {
-                posleden = i;
-                break;
+        for (int i = 0; i < count; i++) for (int j = i+1; j < count; j++) {
+                if (digits[i] > digits[j]) {
+                    int temp = digits[i];
+                    digits[i] = digits[j];
+                    digits[j] = temp;
+                }
             }
-        }
 
-        for (int i = prv; i <= posleden; i++) count++;
+        printf("%d:", count);
 
-        if (max <= count) {
-            max = count;
-            for (int i = 0; i <= posleden-prv; i++) a[i] = row[prv+i];
-        }
+        for (int i = 0; i < count; i++) printf("%d", digits[i]);
+
+        printf("\n");
     }
-
-    for (int i = 0; i < strlen(a); i++) printf("%c", a[i]);
 }

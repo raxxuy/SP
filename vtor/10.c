@@ -13,12 +13,10 @@ void wtf() {
 int main() {
     wtf();
 
-    FILE *f;
+    FILE *f = fopen("podatoci.txt", "r");
 
-    char row[100], rang[2];
-    int pocetok, kraj;
-
-    if (!(f = fopen("podatoci.txt", "r"))) return -1;
+    char line[100], rang[2];
+    int start, end;
 
     scanf("%s", rang);
 
@@ -29,21 +27,25 @@ int main() {
 
     while (!feof(f)) {
 
-        fgets(row, sizeof(row), f);
+        fgets(line, 100, f);
 
         if (feof(f)) break;
 
-        for (int i = 0; i < strlen(row); i++) if (row[i] == rang[0]) {
-            pocetok = i;
-            break;
+        for (int i = 0; i < strlen(line); i++) {
+            if (line[i] == rang[0]) {
+                start = i;
+                break;
+            }
         }
 
-        for (int i = strlen(row) - 1; i >= 0; i--) if (row[i] == rang[1]) {
-            kraj = i;
-            break;
+        for (int i = strlen(line)-1; i >= 0; i--) {
+            if (line[i] == rang[1]) {
+                end = i;
+                break;
+            }
         }
 
-        for (int i = pocetok + 1; i < kraj; i++) printf("%c", row[i]);
+        for (int i = start + 1; i < end; i++) printf("%c", line[i]);
 
         printf("\n");
     }

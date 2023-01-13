@@ -2,11 +2,10 @@
 
 int main() {
 
-    int n, m, x, y, quadrant1 = 0, quadrant2 = 0, quadrant3 = 0, quadrant4 = 0;
+    int n, m, x, y, matrix[100][100];
+    int quadrant1 = 0, quadrant2 = 0, quadrant3 = 0, quadrant4 = 0;
 
     scanf("%d%d", &n, &m);
-
-    int matrix[n][m];
 
     for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) scanf("%d", &matrix[i][j]);
 
@@ -14,10 +13,10 @@ int main() {
 
     for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) {
         if (i < x) {
-            if (j > y) quadrant1 += matrix[i][j];
-            else quadrant2 += matrix[i][j];
+            if (j < y) quadrant2 += matrix[i][j];
+            else quadrant1 += matrix[i][j];
         } else {
-            if (j > y) quadrant3 += matrix[i][j];
+            if (j < y) quadrant3 += matrix[i][j];
             else quadrant4 += matrix[i][j];
         }
     }

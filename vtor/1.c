@@ -11,31 +11,31 @@ void writeToFile() {
 }
 
 int vowel (char ch) {
-    ch = tolower(ch);
-    if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') return 1;
-    else return 0;
+    return (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u');
+    // moze isto  return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
 }
 
 int main() {
 
     writeToFile();
 
-    FILE *f;
+    FILE *f = fopen("text.txt", "r");
 
-    char prev, ch;
     int count = 0;
+    char prev, current;
 
-    if (!(f = fopen("text.txt", "r"))) return -1;
+    while ((current = fgetc(f)) != EOF) {
 
-    while ((ch = fgetc(f)) != EOF) {
+        current = tolower(current);
+
         if (prev) {
-            if (vowel(prev) && vowel(ch)) {
-                printf("%c%c\n", tolower(prev), tolower(ch));
+            if (vowel(prev) && vowel(current)) {
+                printf("%c%c\n", prev, current);
                 count++;
             }
         }
 
-        prev = ch;
+        prev = current;
     }
 
     printf("%d", count);

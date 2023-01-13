@@ -1,10 +1,7 @@
 #include <stdio.h>
 
 float formula (int array[], int n, int index) {
-
-    if (index+1 == n) return array[index];
-
-    return array[index] + 1/formula(array, n, index+1);
+    return index+1 == n ? array[index] : array[index] + 1/formula(array, n, index+1);
 }
 
 int main() {

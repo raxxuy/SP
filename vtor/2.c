@@ -10,27 +10,25 @@ void wtf() {
 }
 
 int main() {
-
     wtf();
 
-    FILE *f;
+    FILE *f = fopen("broevi.txt", "r");
 
-    int n, num, max_num, temp, max_digit;
-
-    if (!(f = fopen("broevi.txt", "r"))) return -1;
+    int n, num, max_num;
 
     while (!feof(f)) {
 
         fscanf(f, "%d", &n);
 
-        max_digit = 0;
-
         if (n == 0) break;
-        else for (int i = 0; i < n; i++) {
+
+        int max_digit = 0;
+
+        for (int i = 0; i < n; i++) {
 
             fscanf(f, "%d", &num);
 
-            temp = num;
+            int temp = num;
 
             while (temp > 9) temp /= 10;
 

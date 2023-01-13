@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// ne menuvaj ovde
 void wf() {
     FILE *f = fopen("livce.txt", "w");
     char c;
@@ -13,21 +12,19 @@ void wf() {
 int main() {
     wf();
 
-    FILE *f;
+    FILE *f = fopen("livce.txt", "r");
 
-    if (!(f = fopen("livce.txt", "r"))) return -1;
+    char code[100][100];
+    int pay, type[100], i = 0, index;
+    float koeficient[100], maxK = 0, payout = 0;
 
-    char sifra[100][100];
-    int uplata, type[100], i = 0, index;
-    float koeficient[100], maxK = 0, dobivka = 0;
+    fscanf(f, "%d", &pay);
 
-    fscanf(f, "%d", &uplata);
-
-    dobivka += uplata;
+    payout += pay;
 
     while (!feof(f)) {
 
-        fscanf(f, "%s %d %f", sifra[i], &type[i], &koeficient[i]);
+        fscanf(f, "%s %d %f", code[i], &type[i], &koeficient[i]);
 
         if (feof(f)) break;
 
@@ -36,7 +33,7 @@ int main() {
 
     for (int j = 0; j < i; j++) {
 
-        dobivka *= koeficient[j];
+        payout *= koeficient[j];
 
         if (maxK < koeficient[j]) {
             maxK = koeficient[j];
@@ -44,5 +41,5 @@ int main() {
         }
     }
 
-    printf("%s %d %.2f\n%.2f", sifra[index], type[index], koeficient[index], dobivka);
+    printf("%s %d %.2f\n%.2f", code[index], type[index], koeficient[index], payout);
 }
