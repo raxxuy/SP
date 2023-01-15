@@ -37,7 +37,6 @@
 ![zadaca 18](https://media.discordapp.net/attachments/960857396106895390/1064022790187012138/image.png)
 ### 19. [File](vtor/19.c)
 ![zadaca 19](https://media.discordapp.net/attachments/960857396106895390/1064022928309637215/image.png)
-
 ##Дополнителни вежби за втор колоквиум
 ###1. [File](vtor/dopolnitelni/1.c)
 ![Zadaca 1](https://media.discordapp.net/attachments/960857396106895390/1064024281824104529/image.png)
