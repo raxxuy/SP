@@ -23,7 +23,7 @@ void transform (int array[], int n) {
 
 int main() {
 
-    int m, n, array[300], count = 0;
+    int m, n, array[100], count = 0;
 
     scanf("%d", &m);
 
